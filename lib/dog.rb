@@ -62,7 +62,7 @@ class Dog
     def save
         if self.id == nil
             self.insert
-            self.id = DB[:conn].execute("SELECT * FROM dogs ORDER BY id DESC LIMIT 1")[0][0]
+            self.id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs")[0][0]
             self
         else
             self.update
